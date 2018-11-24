@@ -1,3 +1,11 @@
+/**
+ * Team:    Syosset Syborgs
+ * ID:      10696
+ *
+ * Author:  Rohan Ghotra        GitHub User: Rohan75
+ * Version: v1.0
+ */
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -5,7 +13,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name="TeleOp2", group="TeleOp")
+@TeleOp(name="TeleOp", group="TeleOp")
 public class TeleOp extends OpMode {
 
     DcMotor FL, FR, BL, BR;
