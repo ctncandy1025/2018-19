@@ -1,30 +1,3 @@
-{
-    "state": "success",
-    "description": "autonomous program with sampling and methods for drive system",
-    "creator": {
-        "login": "Rohan75",
-        "id": 38005466,
-        "node_id": "MDQ6VXNlcjM4MDA1NDY2",
-        "avatar_url": "https://avatars3.githubusercontent.com/u/38005466?v=4",
-        "gravatar_id": "",
-        "url": "https://api.github.com/users/Rohan75",
-        "html_url": "https://github.com/Rohan75",
-        "followers_url": "https://api.github.com/users/Rohan75/followers",
-        "following_url": "https://api.github.com/users/Rohan75/following{/other_user}",
-        "gists_url": "https://api.github.com/users/Rohan75/gists{/gist_id}",
-        "starred_url": "https://api.github.com/users/Rohan75/starred{/owner}{/repo}",
-        "subscriptions_url": "https://api.github.com/users/Rohan75/subscriptions",
-        "organizations_url": "https://api.github.com/users/Rohan75/orgs",
-        "repos_url": "https://api.github.com/users/Rohan75/repos",
-        "events_url": "https://api.github.com/users/Rohan75/events{/privacy}",
-        "received_events_url": "https://api.github.com/users/Rohan75/received_events",
-        "type": "User",
-        "site_admin": false,
-        "name": "Rohan Ghotra",
-        "company": "Syosset Syborgs",
-    }
-}
-
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -32,6 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -51,6 +25,7 @@ public class Autonomous extends LinearOpMode {
     private static DcMotor actuator;
     private static Servo shoulder, elbow, wrist;
     private static CRServo intake;
+    private static boolean shouldIntake = false;
 
     // Encoder values
     private static final int LENGTH = 14, WIDTH = 18, WHEEL_RADIUS = 2, TICKS_PER_ROT = 1440, GEAR_RATIO = 60,
@@ -64,6 +39,9 @@ public class Autonomous extends LinearOpMode {
     private TFObjectDetector tfod;
     private ArrayList<minerals> sampling;
     
+    // Timer
+    private static ElapsedTime etime = new ElapsedTime;
+    
     public enum minerals {
         GOLD, SILVER
     }
@@ -75,8 +53,12 @@ public class Autonomous extends LinearOpMode {
         waitForStart();
 
         Drive.mapDriveSystem();
+        SubSystems.mapSubSystems();
         
         while (opModeIsActive) {
+            // Unlatching
+            SubSystems.controlActuator(900);
+            
             // Sampling
             while (opModeIsActive && sampling == null) {
                 sampling = objectDetection(tfod.getUpdatedRecognitions());
@@ -84,21 +66,26 @@ public class Autonomous extends LinearOpMode {
             if (sampling.indexOf(minerals.GOLD) == 0) {
                 Drive.moveX("inches", -16);
                 Drive.moveY("inches", 10);
+                Drive.moveX("inches", 16);
             } else if (sampling.indexOf(minerals.GOLD) == 1) {
                 Drive.moveY("inches", 10);
             } else {
                 Drive.moveX("inches", 16);
                 Drive.moveY("inches", 10);
+                Drive.moveX("inches", -16);
             }
+            
+            // Team marker
+            Drive.moveY("inches", 15);
+            etime.reset();
+            SubSystems.spinIntake("reverse");
+            while (opModeIsActive && etime.time() < 3.0) {;}
+            SubSystems.spinIntake();
+            
+            // Crater parking
+            Drive.turnY(45);
+            Drive.moveY("inches", 30);
         }
-    }
-
-    // Instantiating subsystem motors/servos
-    public void mapSubSystems() {
-        shoulder = hardwareMap.get(Servo.class, "shoulder");
-        elbow = hardwareMap.get(Servo.class, "elbow");
-        wrist = hardwareMap.get(Servo.class, "wrist");
-        intake = hardwareMap.get(CRServo.class, "intake");
     }
 
     // Class with methods used in drive system
@@ -183,10 +170,33 @@ public class Autonomous extends LinearOpMode {
             BR.setTargetPosition((int)(BR.getCurrentPosition() - (turnInches * TICKS_PER_INCH / 2)));
         }
     }
-
-    // Method for controlling linear actuator movement
-    public void controlActuator(double degrees) {
-        actuator.setTargetPosition((int)(actuator.getCurrentPosition() + (degrees * TICKS_PER_DEGREE)));
+    
+    public static class SubSystems {
+        // Instantiating subsystem motors/servos
+        public static void mapSubSystems() {
+            actuator = harwardMap.get(DcMotor.class, "actuator");
+            shoulder = hardwareMap.get(Servo.class, "shoulder");
+            elbow = hardwareMap.get(Servo.class, "elbow");
+            wrist = hardwareMap.get(Servo.class, "wrist");
+            intake = hardwareMap.get(CRServo.class, "intake");
+        }
+        
+        // Method for controlling linear actuator movement
+        public static void controlActuator(double degrees) {
+            actuator.setTargetPosition((int)(actuator.getCurrentPosition() + (degrees * TICKS_PER_DEGREE)));
+        }
+        
+        // Method for turning on/off the intake
+        public static void spinIntake(String... power) {
+            power = (power.lenth > 0 ? power[0] : null);
+            
+            if (power == null) {
+                intake.setPower((shouldIntake ? .75 : 0));
+                shouldIntake = !shouldIntake;
+            } else if (power.equals("reverse")) {
+                intake.setPower(-.75);
+                shouldIntake = true;
+        }
     }
     
     public ArrayList<minerals> objectDetection(List<Recognition> objectsFound) {
