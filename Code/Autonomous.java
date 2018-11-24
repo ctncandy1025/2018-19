@@ -1,3 +1,11 @@
+/**
+ * Team:    Syosset Syborgs
+ * ID:      10696
+ *
+ * Author:  Rohan Ghotra        GitHub User: Rohan75
+ * Version: v2.1
+ */
+
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
