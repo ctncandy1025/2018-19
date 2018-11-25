@@ -20,11 +20,12 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class TeleOp extends OpMode {
 
 	// Drive System
-    DcMotor FL, FR, BL, BR;
+    private DcMotor FL, FR, BL, BR;
     
     // Sub-Systems
-    Servo shoulder, elbow, wrist;
-    CRServo intake;
+    private Servo shoulder, elbow, wrist;
+    private CRServo intake;
+	private boolean shouldIntake = false;
 
     @Override
     public void init() {
