@@ -25,7 +25,7 @@ public class TeleOp extends OpMode {
     // Sub-Systems
     private Servo shoulder, elbow, wrist;
     private CRServo intake;
-	private boolean shouldIntake = false;
+    private boolean shouldIntake = false;
 
     @Override
     public void init() {
