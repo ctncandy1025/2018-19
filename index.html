@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ex_1</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <script src="js/w3.js"></script>
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <style>
+    .bodypage {
+    background: #ECF0F1;
+}
+
+    .lala{
+  width: 1000px;
+  height: 500px;
+}
+
+    p{
+    font-family: "Verdana";
+}
+
+    html, body{
+        font-family: Verdana;
+        padding: 0;
+        margin: 0;
+        height: 50%;
+    }
+
+    #wrapper{
+    min-height: 100%;
+    position: relative;
+}
+
+    #footer{
+    height:70px;
+    width:100%;
+    color:white;
+    background-color: #b98abe;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+}
+
+    .align{
+    text-align: center;
+}
+
+    .header{
+        width: 100%;
+        height: 100px;
+        background: #333;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99999;
+    }
+
+    .container{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    a{
+        text-decoration: none;
+        color: white;
+    }
+
+    .nav{
+        float: right;
+    }
+
+    li{
+        float: left;
+        padding-top: 20px;
+        font-family: "Verdana";
+        text-transform: uppercase;
+        font-size: 20px;
+        color: white;
+    }
+
+    .header .logo {
+        float: left;
+        padding-top: 20px;
+        font-family: "Verdana Bold";
+        text-transform: uppercase;
+        font-size: 20px;
+        color: white;
+    }
+
+    ul{
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: inherit;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    li a, .dropbtn{
+        display: inline-block;
+        color: black;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    li a:hover, .dropdown:hover .dropbtn{
+        background-color: #ff928d;
+    }
+
+    li .dropdown {
+        display: inline-block;
+    }
+
+    .dropdown-content{
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+
+    }
+
+    .dropdown-content a:hover{
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content{
+        display: block;
+    }
+
+    .color-changer{
+        color: white;
+    }
+
+    #coloor-changer{
+        color: #ffffff;
+    }
+    #whitecolor{
+        color: white;
+    }
+        </style>
+    </head>
+    <body class="bodypage">
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+
+        <div class="header">
+            <div class="container">
+                <div class="logo">
+                    <h1><a href="#">SYOSSET SYBORGS</a> </h1>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="http://localhost:63342/World1/index.html?_ijt=sskn0s2avbnahuk6gij80sr5bh" class="color-changer">Home</a></li>
+                        <li><a href="http://localhost:63342/World1/products.html?_ijt=fstgrbfmvi3ig5knp55r9rrilu" id="whitecolor">Our Journey</a></li>
+                        <li class="dropdown"><a href="javascript:void(0)" class="dropbtn" id="coloor-changer">Pictures</a>
+                            <div class="dropdown-content">
+                                <a href="http://www.google.com/">Of Our Robot</a>
+                                <a href="http://www.apple.com/">Failures</a>
+                            <a href="http://www.cnn.com">Our Sponsors</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content">
+
+
+            </div>
+        </div>
+
+
+        <br><br><br><br><br>
+
+
+        <center><iframe src="carousel.html" scrolling="no" class="lala" frameborder="no"></iframe></center>
+            <br><br>
+       <center> <div w3-include-html="booot.html" class="tiles"></div>
+
+        <script>
+            w3.includeHTML();
+        </script></center>
+<br><br>
+
+        <h3 class="align"> What We Do</h3>
+       <center><p>We are making a robot for the Long Island FTC Competition</p></center>
+        <br>
+        <h3 class="align"> Sponsors</h3>
+        <center><p>SPONSOR US!</p></center>
+
+        <div id="wrapper">
+            <div id="footer">
+                <h2>Made by Rhea Sharma; Managed by Syosset Syborgs</h2>
+            </div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='https://www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+    </body>
+</html>
+
