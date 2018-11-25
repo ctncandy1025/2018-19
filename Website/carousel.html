@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>none</title>
+<style>
+
+    body {
+        width: 1100px;
+        height: 500px;
+
+    }
+
+.css-carousal{
+    overflow: hidden;
+    margin-left: 5%;
+    margin-top:2%;
+}
+
+.css-carousal .css-img{
+    border-radius: 20px;
+    width: 90%;
+    height:90%;
+    max-width:90%;
+    max-height:90%;
+    position:absolute;
+    opacity: 0;
+    -webkit-animation-name: css-animation-fade;
+    -webkit-animation-duration: 15s;
+    -webkit-animation-iteration-count: infinite ;
+}
+    .css-carousal .css-img:nth-child(2){
+    -webkit-animation-delay: 5s;
+    }
+    .css-carousal .css-img:nth-child(3){
+        -webkit-animation-delay: 10s;
+    }
+    .css-carousal .css-img:nth-child(4){
+        -webkit-animation-delay: 10s;
+    }
+@-webkit-keyframes css-animation-fade{
+    from{ opacity:0;}
+    5%{ opacity: 1;}
+    15%{ opacity: 1;}
+    20%{ opacity: 0;}
+    to{ opacity: 0;}
+
+
+}
+
+
+
+</style>
+</head>
+<body>
+
+
+<div class="css-carousal">
+    <img src="img/20181013_150944.jpg" class="css-img" width="1278px"height="958px">
+    <img src="img/20181013_151246.jpg" class="css-img" width="1278px" height="958px">
+    <img src="img/20181013_171357.jpg" class="css-img" width="1278px" height="958px">
+
+
+
+
+</div>
+</body>
+</html>
